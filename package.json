@@ -1,0 +1,16 @@
+{
+  "name": "mg-s5-ev-charging-tracker",
+  "version": "1.0.0",
+  "description": "MG S5 EV Charging Expense Tracker",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "ev",
+    "mg-s5",
+    "charging-tracker"
+  ],
+  "author": "",
+  "license": "ISC"
+}
