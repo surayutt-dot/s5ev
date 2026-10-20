@@ -55,9 +55,51 @@ document.addEventListener('DOMContentLoaded', () => {
   loadRecords();
   initDefaultDateTime();
   setupEventListeners();
+  setupPwaInstallation();
   render();
   lucide.createIcons();
 });
+
+// PWA Service Worker & Install Prompt
+let deferredPrompt = null;
+function setupPwaInstallation() {
+  // Register Service Worker
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js')
+      .then((reg) => console.log('PWA Service Worker registered:', reg.scope))
+      .catch((err) => console.log('Service Worker registration error:', err));
+  }
+
+  const pwaBanner = document.getElementById('pwaInstallBanner');
+  const btnInstall = document.getElementById('btnPwaInstall');
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    if (pwaBanner) {
+      pwaBanner.classList.remove('hidden');
+      lucide.createIcons();
+    }
+  });
+
+  if (btnInstall) {
+    btnInstall.addEventListener('click', async () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+          if (pwaBanner) pwaBanner.classList.add('hidden');
+        }
+        deferredPrompt = null;
+      }
+    });
+  }
+
+  window.addEventListener('appinstalled', () => {
+    if (pwaBanner) pwaBanner.classList.add('hidden');
+    showToast('ติดตั้งแอพ MG S5 สำเร็จเรียบร้อย!', 'success');
+  });
+}
 
 // Set current time into datetime-local input
 function initDefaultDateTime() {

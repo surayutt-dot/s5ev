@@ -100,6 +100,22 @@
 
   <main class="max-w-4xl mx-auto px-4 pt-5 space-y-5">
 
+    <!-- PWA Install Banner (Visible when app is installable) -->
+    <div id="pwaInstallBanner" class="hidden clean-card rounded-2xl p-3.5 bg-gradient-to-r from-cyan-50 via-white to-emerald-50 border border-cyan-200 shadow-sm flex items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-white border border-cyan-200 overflow-hidden shadow-xs shrink-0 p-0.5">
+          <img src="apple-touch-icon.png" alt="MG S5 EV" class="w-full h-full object-contain rounded-lg">
+        </div>
+        <div>
+          <p class="text-xs font-bold text-slate-900 leading-tight">ติดตั้งแอพ MG S5 ลงในมือถือ</p>
+          <p class="text-[11px] text-slate-500">เปิดใช้งานได้ทันที มีไอคอนรูปรถแบบเต็มจอ</p>
+        </div>
+      </div>
+      <button id="btnPwaInstall" class="px-3.5 py-2 text-xs font-semibold text-white bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-700 hover:to-teal-700 rounded-xl shadow-xs shrink-0 transition-transform active:scale-95 flex items-center gap-1.5">
+        <i data-lucide="download" class="w-3.5 h-3.5"></i> ติดตั้งแอป
+      </button>
+    </div>
+
     <!-- Overview Stats Cards -->
     <section class="grid grid-cols-2 sm:grid-cols-4 gap-3">
       <!-- Total Cost -->
